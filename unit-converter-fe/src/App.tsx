@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { Tabs, TabsList, TabsTrigger } from "./components/ui/tabs";
+import { Button } from "./components/ui/button";
+import ValueConversion from "./components/ValueConversion";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [selectedTab, setSelectedTab] = useState<
+    "length" | "weigth" | "temperature"
+  >("length");
 
+  console.log(selectedTab, "REHUL");
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="w-full h-screen">
+        <div className="flex justify-center items-center p-24">
+          <div className="border-2 border-gray-200  p-4 flex flex-col gap-2 rounded-2xl">
+            {/* TITLE */}
+            <div className="w-full flex justify-center">
+              <p className="text-2xl">Unit Converter</p>
+              {/* TABS */}
+            </div>
+            <div className="w-full flex justify-center">
+              <Tabs
+                value={selectedTab}
+                onValueChange={(value) =>
+                  setSelectedTab(value as "length" | "weigth" | "temperature")
+                }
+                defaultValue={selectedTab}
+              >
+                <TabsList>
+                  <TabsTrigger value="length">Length</TabsTrigger>
+                  <TabsTrigger value="weigth">Weigth</TabsTrigger>
+                  <TabsTrigger value="temperature">Temperature</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            {/* CONTENT */}
+            <ValueConversion type={selectedTab} />
+
+            {/* BUTTON */}
+            <div className="w-full flex justify-center">
+              <Button>Convert</Button>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
