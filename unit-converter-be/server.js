@@ -1,22 +1,11 @@
 import http from "node:http";
+import express from "express";
 
-//CREATESERVER IS ALSO AN EVENTEMITTER
-const server = http.createServer();
+const app = express();
+const server = http.createServer(app);
 
-//REQUEST IS OF TYPE READABLESTREAM -> ALSO AN EVENTEMITTER
-server.on("request", (req, res) => {
-  const { headers, url, method } = req;
-  req.on("error", (err) => {
-    console.log("Error:" + " " + err);
-  });
-  let body = [];
-  req.on("data", (data) => {
-    body.push(data);
-  });
-  req.on("end", () => {
-    body = Buffer.concat(body).toString();
-    console.log(body);
-  });
+app.get("/", (req, res) => {
+  res.send("hello world");
 });
 
 server.listen(8000);
