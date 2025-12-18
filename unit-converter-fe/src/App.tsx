@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 import { Tabs, TabsList, TabsTrigger } from "./components/ui/tabs";
-import { Button } from "./components/ui/button";
 import ValueConversion from "./components/ValueConversion";
+import { Button } from "./components/ui/button";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState<
-    "length" | "weigth" | "temperature"
+    "length" | "weight" | "temperature"
   >("length");
+
+  const [output, setOutput] = useState<string | null>(null);
 
   console.log(selectedTab, "REHUL");
   return (
@@ -24,24 +26,32 @@ function App() {
               <Tabs
                 value={selectedTab}
                 onValueChange={(value) =>
-                  setSelectedTab(value as "length" | "weigth" | "temperature")
+                  setSelectedTab(value as "length" | "weight" | "temperature")
                 }
                 defaultValue={selectedTab}
               >
                 <TabsList>
                   <TabsTrigger value="length">Length</TabsTrigger>
-                  <TabsTrigger value="weigth">Weigth</TabsTrigger>
+                  <TabsTrigger value="weight">Weigth</TabsTrigger>
                   <TabsTrigger value="temperature">Temperature</TabsTrigger>
                 </TabsList>
               </Tabs>
             </div>
-            {/* CONTENT */}
-            <ValueConversion type={selectedTab} />
 
-            {/* BUTTON */}
-            <div className="w-full flex justify-center">
-              <Button>Convert</Button>
-            </div>
+            {/* CONTENT */}
+            {output ? (
+              <div className="flex flex-col gap-2 w-xl">
+                <div className="w-full flex flex-col items-center justify-center">
+                  <p>Result of your calculation</p>
+                  <p className="text-xl">{output}</p>
+                  <Button className="mt-2" onClick={() => setOutput(null)}>
+                    Reset
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <ValueConversion type={selectedTab} setOutput={setOutput} />
+            )}
           </div>
         </div>
       </div>
