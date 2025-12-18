@@ -23,9 +23,7 @@ app.post("/api/convert", (req, res, next) => {
 
 app.post("/api/convert", (req, res) => {
   try {
-    console.log(req.body);
     let response = convert(req.body);
-    console.log(response);
     res.send(response);
   } catch (err) {
     res.status(400);
@@ -33,5 +31,5 @@ app.post("/api/convert", (req, res) => {
     res.send();
   }
 });
-console.log("BACKEND RUNNING");
+console.log("Backend running on port 8000");
 server.listen(8000);
