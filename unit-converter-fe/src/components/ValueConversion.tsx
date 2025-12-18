@@ -91,7 +91,6 @@ const ValueConversion = ({
         conversionTo
       );
       if (response && conversionFrom && conversionTo) {
-        console.log(conversionFrom, conversionTo);
         setOutput(
           `${value} ${unitAbbreviations[conversionFrom]} = ${Number(
             response.data
@@ -101,7 +100,7 @@ const ValueConversion = ({
         );
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
   return (

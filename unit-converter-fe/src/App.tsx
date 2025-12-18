@@ -10,8 +10,6 @@ function App() {
   >("length");
 
   const [output, setOutput] = useState<string | null>(null);
-
-  console.log(selectedTab, "REHUL");
   return (
     <>
       <div className="w-full h-screen">
