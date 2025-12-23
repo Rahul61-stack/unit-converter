@@ -3,6 +3,13 @@ import express from "express";
 import { convert } from "./helper.js";
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "https://unit-converter-api-n19s.onrender.com", // or specify your Cloudflare Pages URL
+  })
+);
+
 app.use(express.json());
 const server = http.createServer(app);
 
