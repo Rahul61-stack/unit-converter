@@ -6,7 +6,8 @@ export const getUnitConversion = async (
   conversionTo: string | null
 ) => {
   try {
-    const response = await axios.post(`${API_URL}/api/convert`, {
+    const apiUrl = encodeURI(`${API_URL}/api/convert`);
+    const response = await axios.post(apiUrl, {
       value: value,
       conversionFrom: conversionFrom,
       conversionTo: conversionTo,
