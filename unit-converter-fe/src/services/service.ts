@@ -1,3 +1,4 @@
+import { API_URL } from "@/config";
 import axios from "axios";
 export const getUnitConversion = async (
   value: number,
@@ -5,7 +6,7 @@ export const getUnitConversion = async (
   conversionTo: string | null
 ) => {
   try {
-    const response = await axios.post("/api/convert", {
+    const response = await axios.post(`${API_URL}/api/convert`, {
       value: value,
       conversionFrom: conversionFrom,
       conversionTo: conversionTo,

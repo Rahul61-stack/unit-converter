@@ -6,7 +6,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://unit-converter-api-n19s.onrender.com", // or specify your Cloudflare Pages URL
+    origin: "https://unit-converter.rahulsrivastav400.workers.dev/", // or specify your Cloudflare Pages URL
   })
 );
 
