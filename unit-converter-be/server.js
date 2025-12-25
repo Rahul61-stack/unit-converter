@@ -1,12 +1,13 @@
 import http from "node:http";
 import express from "express";
 import { convert } from "./helper.js";
+import cors from "cors";
 
 const app = express();
 
 app.use(
   cors({
-    origin: "https://unit-converter.rahulsrivastav400.workers.dev/", // or specify your Cloudflare Pages URL
+    origin: "https://unit-converter.rahulsrivastav400.workers.dev", // or specify your Cloudflare Pages URL
   })
 );
 
